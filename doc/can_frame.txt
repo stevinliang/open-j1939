@@ -1,0 +1,71 @@
+
+                          CAN Frame Format
+                          ================
+
+Maintained by Stevin Liang <stevin_liang@163.com>
+Created: Jun 24, 2016
+Last revised: Jun 24, 2016
+
+1. Introduction
+---------------
+
+CAN 2.0B contains specification of two message formats, standard frame and extended frame.
+CAN 2.0B compatibility implies that messages of both formats can potentially be present on
+a single network by using certain bit codings that allow for the recognition of the different
+formats. To this point, SAE J1939 also has accommodations for both CAN data frame formats.
+But SAE J1939 only defines a full strategy for standardized communications using the extended
+frame format. All standard frame format messages are for proprietary use following the rules
+defined in this document.
+
+Therefore, SAE J1939 devices MUST use the extended frame format. Standard frame format messages
+can reside on the network, but only as described in this document.
+
+NOTE - Standard frame devices do not respond to network management messages and are not able to
+support the strategy for standardized communications.
+
+
+2. CAN Standard Frame Format
+----------------------------
+
+            |<--------------------------------------------------- CAN Data Frame ------------------------------------------------>|
+            |                                   Maximum frame length with bit stuff = 127 bits                                    |
+            |                                                                                                                     |
+            |   | Arbitration Field | Control Field |            Data Field            |                   CRC                    |
+            |   |<---- 12 bits ---->|<--- 6 bis --->|                                  |                Delimiter                 |
+         ___|   |___________________|_______________|__________________________________|____________________|_____________________|
+            | S |               | R | I |   |       |                                  |                  | | |       |           |
+            | O |  Identifier   | T | D | r |  DLC  |            Data Field            |        CRC       |\|/|  ACK  |    EOF    |
+            | F |               | R | E | 0 |       |                                  |                  | * | Field |           |
+            |...|...............|...|...|...|.......|..................................|..................|...|.......|...........|
+      bits->| 1 |      11       | 1 | 1 | 1 |   4   |              0 - 64              |         15       | 1 |   2   |     7     |
+            |___|_______________|___|___|___|_______|__________________________________|__________________|___|_______|___________|
+
+            |                                                                                             |                       |
+            |<--------------------------------------- Bit Stuffing -------------------------------------->|<-- No Bit Stuffing -->|
+            |                                                                                             |                       |
+
+
+
+3. CAN Extended Frame Format
+----------------------------
+
+            |<----------------------------------------------------------- CAN Extended Data Frame --------------------------------------------------------->|
+            |                                               Maximum frame length with bit stuff = 150 bits                                                  |
+            |                                                                                                                                               |
+            |   |              Arbitration Field              | Control Field |            Data Field            |                   CRC                    |
+            |   |<----------------- 32 bits ----------------->|<--- 6 bis --->|                                  |                Delimiter                 |
+         ___|   |_____________________________________________|_______________|__________________________________|____________________|_____________________|
+            | S |               | S | I |                 | R |   |   |       |                                  |                  | | |       |           |
+            | O |  Identifier   | R | D |   Identifier    | T | r | r |  DLC  |            Data Field            |        CRC       |\|/|  ACK  |    EOF    |
+            | F |               | R | E |      Ext        | R | 1 | 0 |       |                                  |                  | * | Field |           |
+            |...|...............|...|...|.................|...|...|...|.......|..................................|..................|...|.......|...........|
+      bits->| 1 |      11       | 1 | 1 |       18        | 1 | 1 | 1 |   4   |              0 - 64              |         15       | 1 |   2   |     7     |
+            |___|_______________|___|___|_________________|___|___|___|_______|__________________________________|__________________|___|_______|___________|
+
+            |                                                                                                                       |                       |
+            |<---------------------------------------------------- Bit Stuffing --------------------------------------------------->|<-- No Bit Stuffing -->|
+            |                                                                                                                       |                       |
+
+
+
+--------------- End of this document ----------------
