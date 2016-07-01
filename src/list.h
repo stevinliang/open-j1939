@@ -16,7 +16,7 @@
 
 struct list_head {
 	struct list_head *next, *prev;
-	void *member;
+	void *mem;
 };
 
 #define LIST_HEAD_INIT(name) { &(name), &(name) }
@@ -28,19 +28,21 @@ struct list_head {
  * list_entry - get the struct from this entry
  * @ptr:   the list_head pointer which embeds &struct.
  * @type:  the type of the struct embedded in this list head.
+ * @member: the name of the list struct within the struct.
  */
-#define list_entry(ptr, type)                  \
-	((type *)((ptr)->member))
+#define list_entry(ptr, type, member)                  \
+	((type *)((ptr)->mem))
 
 /**
  * list_first_entry - get the first element from a list
  * @ptr:   the list head to take the element from.
  * @type:  the type of &struct embedded in the list head.
+ * @member: the name of the list struct within the struct.
  *
  * Note, that list is expected to be not empty.
  */
-#define list_first_entry(ptr, type)            \
-	list_entry(ptr, type)
+#define list_first_entry(ptr, type, member)            \
+	list_entry(ptr, type, member)
 
 /**
  * list_for_each -  iterate over a list
@@ -54,12 +56,13 @@ struct list_head {
  * list_for_each_entry  -  iterate over list of given type
  * @pos:   the type * to use as loop cursor.
  * @head:  the head for your list.
- * @type:  the type of struct embedded in list_head
+ * @type:  the type of struct embedded in list_head.
+ * @member: the name of the list struct within the struct
  */
-#define list_for_each_entry(pos, head, type)        \
-	for (pos = list_entry((head)->next, type);      \
-			&(head)->list != (head);                 \
-			pos = list_entry(pos->list.next), type)
+#define list_for_each_entry(pos, head, type, member)        \
+	for (pos = list_entry((head)->next, type, member);      \
+			&pos->member != (head);		                    \
+			pos = list_entry(pos->member.next, type, member))
 
 
 void INIT_LIST_HEAD(struct list_head *list);
