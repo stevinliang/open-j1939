@@ -21,6 +21,6 @@ typedef signed int int32_t;
 
 typedef signed int size_t;
 
-#define	NULL 0UL
+#define	NULL ((void *)0)
 
 #endif
