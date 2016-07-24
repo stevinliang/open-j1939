@@ -1,5 +1,5 @@
 /*
- * types.h  Defines base data types used in open j1939 stack.
+ * jtypes.h  Defines base data types used in open j1939 stack.
  * author: Stevin Liang <stevin_liang@163.co>
  * created: Jun 25, 2016
  *
@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef __TYPES_H__
-#define __TYPES_H__
+#ifndef __JTYPES_H__
+#define __JTYPES_H__
 
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
