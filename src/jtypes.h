@@ -10,17 +10,17 @@
 #ifndef __JTYPES_H__
 #define __JTYPES_H__
 
-typedef unsigned char uint8_t;
-typedef signed char int8_t;
+typedef unsigned char juint8_t;
+typedef signed char jint8_t;
 
-typedef unsigned short uint16_t;
-typedef signed short int16_t;
+typedef unsigned short juint16_t;
+typedef signed short jint16_t;
 
-typedef unsigned int uint32_t;
-typedef signed int int32_t;
+typedef unsigned int juint32_t;
+typedef signed int jint32_t;
 
-typedef signed int size_t;
+typedef signed int jsize_t;
 
-#define	NULL ((void *)0)
+#define	JNULL ((void *)0)
 
 #endif
