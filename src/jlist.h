@@ -12,7 +12,7 @@
 #ifndef __JLIST_H__
 #define __JLIST_H__
 
-#include "Jtypes.h"
+#include "jtypes.h"
 
 struct jlist_head {
 	struct jlist_head *next, *prev;
@@ -60,7 +60,7 @@ struct jlist_head {
  * @member: the name of the list struct within the struct
  */
 #define jlist_for_each_entry(pos, head, type, member)        \
-	for (pos = list_entry((head)->next, type, member);      \
+	for (pos = jlist_entry((head)->next, type, member);      \
 			&pos->member != (head);		                    \
 			pos = jlist_entry(pos->member.next, type, member))
 
