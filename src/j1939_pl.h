@@ -10,20 +10,20 @@
 #ifndef __J1939_PL_H__
 #define __J1939_PL_H__
 
-#include "types.h"
-#include "list.h"
+#include "jtypes.h"
+#include "jlist.h"
 
 struct can_frame {
-	uint32_t id;
-	uint8_t ide;
-	uint8_t dlc;
-	uint8_t data[8];
-	uint16_t crc;
+	juint32_t id;
+	juint8_t ide;
+	juint8_t dlc;
+	juint8_t data[8];
+	juint16_t crc;
 
 };
 
 struct can_adapter {
-	struct list_head list;
+	struct jlist_head list;
 	char *name;
 	int status;
 	int id;

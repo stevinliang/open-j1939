@@ -6,9 +6,10 @@
  * This file is released under GPLv2
  *
  */
+#include <string.h>
 #include "j1939_pl.h"
 
-LIST_HEAD(can_adapter_list);
+JLIST_HEAD(can_adapter_list);
 
 int can_send_frame(struct can_adapter *adap, struct can_frame *frame)
 {
@@ -24,7 +25,7 @@ struct can_adapter *can_get_adapter_by_name(char *name)
 {
 	struct can_adapter *can_adap = NULL;
 
-	list_for_each_entry(can_adap, &can_adapter_list, struct can_adapter, list) {
+	jlist_for_each_entry(can_adap, &can_adapter_list, struct can_adapter, list) {
 		if (!strcmp(can_adap->name, name))
 			break;
 	}
@@ -36,7 +37,7 @@ struct can_adapter *can_get_adapter_by_id(int index)
 {
 	struct can_adapter *can_adap = NULL;
 
-	list_for_each_entry(can_adap, &can_adapter_list, struct can_adapter, list) {
+	jlist_for_each_entry(can_adap, &can_adapter_list, struct can_adapter, list) {
 		if (can_adap->id == index)
 			break;
 	}
@@ -49,19 +50,19 @@ int can_register_adapter(struct can_adapter *adap)
 {
 	struct can_adapter *pos = NULL;
 
-	list_for_each_entry(pos, &can_adapter_list, struct can_adapter, list) {
+	jlist_for_each_entry(pos, &can_adapter_list, struct can_adapter, list) {
 		if (pos->id == adap->id)
 			return -1;
 	}
 
-	list_add(&adap->list, &can_adapter_list);
+	jlist_add(&adap->list, &can_adapter_list);
 
 	return 0;
 }
 
 int can_unregister_adapter(struct can_adapter *adap)
 {
-
+	jlist_del(&adap->list);
 }
 
 int can_open_adaper(struct can_adapter *adap)
