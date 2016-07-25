@@ -23,4 +23,5 @@ typedef signed int jsize_t;
 
 #define	JNULL ((void *)0)
 
+#define	NULL ((void *)0)
 #endif
