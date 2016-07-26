@@ -1,3 +1,10 @@
+/*
+ * jqueue.h queue implement head file.
+ * author: Stevin Liang <stevin_liang@163.com>
+ *
+ *   This file is released under GPLv2
+ **/
+
 #ifndef __JQUEUE_H
 #define __JQUEUE_H
 #include "jtypes.h"

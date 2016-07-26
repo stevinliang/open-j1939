@@ -1,3 +1,10 @@
+/*
+ * jqueue.c queue implement.
+ * author: Stevin Liang <stevin_liang@163.com>
+ *
+ *      This file is released under GPLv2
+ **/
+
 #include "jqueue.h"
 #include "jerrno.h"
 #include "jtypes.h"
