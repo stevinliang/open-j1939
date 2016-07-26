@@ -1,3 +1,10 @@
+/*
+ * jmutex.h mutex head file.
+ * author: Stevin Liang <stevin_liang@163.com>
+ *
+ *   This file is released under GPLv2
+ **/
+
 #ifndef _JMUTEX_H
 #define _JMUTEX_H
 

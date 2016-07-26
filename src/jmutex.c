@@ -1,3 +1,10 @@
+/*
+ * jmutex.c mutex implement
+ * author: Stevin Liang <stevin_liang@163.com>
+ *
+ *    This file is released under GPLv2
+ **/
+
 #include "jmutex.h"
 
 void jmutex_init(struct jmutex *lock, int locked)
