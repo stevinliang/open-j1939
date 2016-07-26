@@ -1,8 +1,18 @@
+/*
+ * jdebug.h debug tool abstract here.
+ * author: Stevin Liang <stevin_liang@163.com>
+ * created: Jul 26, 2016
+ *
+ *  This file is released under GPLv2
+ *
+ **/
+
 #ifndef __JDEBUG_H
 #define __JDEBUG_H
 
 
 #define JDBG_PR(messege)
+
 #define JDEBUG_PL   0x00000001
 #define JDEBUG_NL   0x00000002
 #define JDEBUG_NM   0x00000003
