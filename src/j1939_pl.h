@@ -22,13 +22,20 @@ struct can_frame {
 
 };
 
+#define CAN_ADAPTER_OPEN_MASK   0x00000001
+#define CAN_ADAPTER_UP_MASK     0x00000002
 struct can_adapter {
 	struct jlist_head list;
 	char *name;
 	int status;
+	int ref;
 	int id;
 	int (*send) (struct can_adapter *adap, struct can_frame *frame);
 	int (*recv) (struct can_adapter *adap, struct can_frame *frame);
+	int (*open) (struct can_adapter *adap);
+	int (*close) (struct can_adapter *adap);
+	int (*up) (struct can_adapter *adap);
+	int (*down) (struct can_adapter *adap);
 };
 
 int can_send_frame(struct can_adapter *adap, struct can_frame *frame);

@@ -7,6 +7,7 @@
  *
  */
 #include <string.h>
+#include "jerrno.h"
 #include "j1939_pl.h"
 
 JLIST_HEAD(can_adapter_list);
@@ -67,11 +68,30 @@ int can_unregister_adapter(struct can_adapter *adap)
 
 int can_open_adaper(struct can_adapter *adap)
 {
+	int ret = 0;
 
+	if (adap->open)
+		ret = adap->open(adap);
+	if (ret)
+		return ret;
+
+	adap->status |= CAN_ADAPTER_OPEN_MASK;
+	adap->ref ++;
+
+	return 0;
 }
 
 int can_close_adapter(struct can_adapter *adap)
 {
+	int ret = 0;
+
+	if (!(adap->status & CAN_ADAPTER_OPEN_MASK))
+		return -JEINVAL;
+	adap->ref --;
+	if (adap->ref == 0)
+		adap->status &= ~CAN_ADAPTER_OPEN_MASK;
+
+	return 0;
 
 }
 
