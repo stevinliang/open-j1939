@@ -1,0 +1,42 @@
+
+                        Protocol Data Unit (PDU)
+	                    ========================
+
+Maintained by Stevin <stevin_liang@163.com>
+Created: Jul 27, 2016
+
+1. Introduction
+---------------
+
+The application and/or network layer provide a string of information that is assimilated into
+a protocol data unit. The protocol data unit provides a framework for organizing the information
+that is key to each CAN Data Frame that is sent. The SAE J1939 protocol data unit consists of
+seven fields. They are priority, reserved, data page, PDU format, PDU specific (which can be a
+destination address, group extension, or proprietary), source address, and data fields. They are
+then packaged into one or more CAN data frames and sent over the physical media to other network
+devices. There is only one PDU per CAN data frame. It should be recognized that some Parameter
+Group Number definitions require more than one CAN Data Frame to send the corresponding data.
+
+Some of the CAN Data Frame fields have been left out of the PDU definition because they are
+controlled entirely by the CAN specification and are invisible to all of the OSI layers above the
+data link layer. They include the SOF, SRR, IDE, RTR, parts of the control field, CRC field, ACK
+field, and the EOF field. These fields are difined by the CAN protocol definition and are not 
+modified by SAE J1939. The seven PDU fields are illustrated in next Figure. Each of the fields within
+the PDU is defined in the subsequent sections.
+
+2. PDU Format
+-------------
+
+            |<---------------------------------------------- J1939 PDU ----------------------------------------------->|
+            |__________________________________________________________________________________________________________|
+            |     |   |    |                     |                         |                      |                    |
+            |  P  | R | DP |         PF          |           PS            |          SA          |     Data Field     |
+            |.....|...|....|.....................|.........................|......................|....................|
+            |     |   |    |                     |                         |                      |                    |
+     bits-->|  3  | 1 | 1  |         8           |           8             |          8           |       0 - 64       |
+            |_____|___|____|_____________________|_________________________|______________________|____________________|
+
+
+
+
+--------------- End fo this document ----------------
