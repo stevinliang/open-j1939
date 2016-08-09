@@ -8,7 +8,6 @@
 #ifndef __JQUEUE_H
 #define __JQUEUE_H
 #include "jtypes.h"
-#include "jmutex.h"
 #define JQUEUE_BUF_SIZE 16
 
 
@@ -18,10 +17,9 @@ struct jqueue
 	int head;
 	int tail;
 	int size;
-	struct jmutex lock;
 };
 
-extern void jqueue_inint(struct jqueue *pq);
+extern void jqueue_init(struct jqueue *pq);
 extern int enjqueue(struct jqueue *pq, void *item);
 extern int dejqueue(struct jqueue *pq, void **item);
 extern int is_jqueue_empty(struct jqueue *pq);
