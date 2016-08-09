@@ -21,20 +21,20 @@ Some of the CAN Data Frame fields have been left out of the PDU definition becau
 controlled entirely by the CAN specification and are invisible to all of the OSI layers above the
 data link layer. They include the SOF, SRR, IDE, RTR, parts of the control field, CRC field, ACK
 field, and the EOF field. These fields are difined by the CAN protocol definition and are not 
-modified by SAE J1939. The seven PDU fields are illustrated in next Figure. Each of the fields within
-the PDU is defined in the subsequent sections.
+modified by SAE J1939. The seven PDU fields are illustrated in next Figure. Each of the fields
+within the PDU is defined in the subsequent sections.
 
 2. PDU Format
 -------------
 
-            |<---------------------------------------------- J1939 PDU ----------------------------------------------->|
-            |__________________________________________________________________________________________________________|
-            |     |   |    |                     |                         |                      |                    |
-            |  P  | R | DP |         PF          |           PS            |          SA          |     Data Field     |
-            |.....|...|....|.....................|.........................|......................|....................|
-            |     |   |    |                     |                         |                      |                    |
-     bits-->|  3  | 1 | 1  |         8           |           8             |          8           |       0 - 64       |
-            |_____|___|____|_____________________|_________________________|______________________|____________________|
+          |<--------------------------------------- J1939 PDU ----------------------------------->|
+          |_______________________________________________________________________________________|
+          |     |   |    |                 |                 |                 |                  |
+          |  P  | R | DP |       PF        |       PS        |        SA       |     Data Field   |
+          |.....|...|....|.................|.................|.................|..................|
+          |     |   |    |                 |                 |                 |                  |
+   bits-->|  3  | 1 | 1  |        8        |        8        |         8       |       0 - 64     |
+          |_____|___|____|_________________|_________________|_________________|__________________|
 
 
 
