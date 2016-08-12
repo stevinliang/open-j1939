@@ -10,20 +10,15 @@
 #include "jtypes.h"
 #define JQUEUE_BUF_SIZE 16
 
-
 struct jqueue
 {
 	void *buf[JQUEUE_BUF_SIZE];
 	int head;
 	int tail;
-	int size;
 };
 
 extern void jqueue_init(struct jqueue *pq);
-extern int enjqueue(struct jqueue *pq, void *item);
-extern int dejqueue(struct jqueue *pq, void **item);
-extern int is_jqueue_empty(struct jqueue *pq);
-extern int is_jqueue_full(struct jqueue *pd);
-
+extern int en_jqueue(struct jqueue *pq, void *item);
+extern int de_jqueue(struct jqueue *pq, void **item);
 
 #endif
