@@ -19,10 +19,10 @@ all: $(OBJS) $(TARGETS)
 
 $(TARGETS): $(OBJS)
 	@$(CC) $^ $(CFLAGS) -o $@
-	@echo "generate $@ ok"
+	@echo "generate $@ done"
 
 clean:
 	@rm $(OBJS) $(TARGETS)
-	@echo "clean"
+	@echo "clean done"
 
 

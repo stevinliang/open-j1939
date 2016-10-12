@@ -4,24 +4,31 @@
  *
  *    This file is released under GPLv2
  **/
-
-#include "j1939_dl.h"
+#ifndef __J1939_DL_H
+#define __J1939_DL_H
 #include "jtypes.h"
-
+#include "j1939_pl.h"
 struct j1939_pdu {
-	juint8_t prio;
-	juint8_t edp;
-	juint8_t dp;
-	juint8_t pf;
-	juint8_t ps;
-	juint8_t sa;
-	juint8_t len;
-	juint8_t data[8];
+	uint8_t p_r_dp;
+	uint8_t pf;
+	uint8_t ps;
+	uint8_t sa;
+	uint8_t data[8];
 };
 
 struct j1939_pg {
-	juint32_t pgn;
-	juint8_t sa;
-	juint16_t len;
+	uint32_t pgn;
+	uint8_t sa;
+	uint16_t len;
 	void *data;
 };
+
+uint32_t get_pgn_from_pdu(struct j1939_pdu *pdu);
+
+void build_pdu(struct j1939_pdu *pdu, uint8_t p_r_dp,
+		uint8_t pf, uint8_t ps,uint8_t sa, uint8_t *data);
+
+int32_t j1939_dl_input(struct can_frame *frame);
+void j1939_dl_init(void);
+
+#endif

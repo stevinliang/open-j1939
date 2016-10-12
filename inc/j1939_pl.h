@@ -11,21 +11,18 @@
 #define __J1939_PL_H__
 
 #include "jtypes.h"
-#include "jlist.h"
+#include "list.h"
 
 struct can_frame {
-	juint32_t id;
-	juint8_t ide;
-	juint8_t dlc;
-	juint8_t data[8];
-	juint16_t crc;
-
+	uint32_t id;
+	uint8_t dlc;
+	uint8_t data[8];
 };
 
 #define CAN_ADAPTER_OPEN_MASK   0x00000001
 #define CAN_ADAPTER_UP_MASK     0x00000002
 struct can_adapter {
-	struct jlist_head list;
+	struct list_head list;
 	char *name;
 	int status;
 	int ref;

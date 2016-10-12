@@ -1,16 +1,16 @@
 /*
- * jqueue.c queue implement.
+ * queue.c queue implement.
  * author: Stevin Liang <stevin_liang@163.com>
  *
  *      This file is released under GPLv2
  **/
 
-#include "jqueue.h"
+#include "queue.h"
 #include "jerrno.h"
 #include "jtypes.h"
 
 
-static int is_jqueue_empty(struct jqueue *pq)
+static int is_queue_empty(struct queue *pq)
 {
 	if (pq->head == pq->tail)
 		return 1;
@@ -18,9 +18,9 @@ static int is_jqueue_empty(struct jqueue *pq)
 		return 0;
 }
 
-static int is_jqueue_full(struct jqueue *pq)
+static int is_queue_full(struct queue *pq)
 {
-	if (pq->head == (pq->tail + 1) % JQUEUE_BUF_SIZE)
+	if (pq->head == (pq->tail + 1) % QUEUE_BUF_SIZE)
 		return 1;
 	else
 		return 0;
@@ -29,10 +29,10 @@ static int is_jqueue_full(struct jqueue *pq)
 
 static int add_index(int index)
 {
-	return (index + 1) % JQUEUE_BUF_SIZE;
+	return (index + 1) % QUEUE_BUF_SIZE;
 }
 
-void jqueue_init(struct jqueue *pq)
+void queue_init(struct queue *pq)
 {
 	pq->tail = 0;
 	pq->head = 0;
@@ -40,11 +40,11 @@ void jqueue_init(struct jqueue *pq)
 	return;
 }
 
-int en_jqueue(struct jqueue *pq, void *item)
+int en_queue(struct queue *pq, void *item)
 {
 	void *buf = NULL;
 
-	if (is_jqueue_full(pq))
+	if (is_queue_full(pq))
 		return -JENOBUFS;
 
 	buf = pq->buf[pq->tail];
@@ -57,11 +57,11 @@ int en_jqueue(struct jqueue *pq, void *item)
 	return 0;
 }
 
-int de_jqueue(struct jqueue *pq, void **item)
+int de_queue(struct queue *pq, void **item)
 {
 	void *buf = NULL;
 
-	if (is_jqueue_empty(pq))
+	if (is_queue_empty(pq))
 		return -JEINVAL;
 
 	buf = pq->buf[pq->head];

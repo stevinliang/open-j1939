@@ -9,19 +9,6 @@
 
 #ifndef __JTYPES_H__
 #define __JTYPES_H__
-
-typedef unsigned char juint8_t;
-typedef signed char jint8_t;
-
-typedef unsigned short juint16_t;
-typedef signed short jint16_t;
-
-typedef unsigned int juint32_t;
-typedef signed int jint32_t;
-
-typedef signed int jsize_t;
-
-#define	JNULL ((void *)0)
-
-#define	NULL ((void *)0)
+#include <stdint.h>
+#include <stddef.h>
 #endif
